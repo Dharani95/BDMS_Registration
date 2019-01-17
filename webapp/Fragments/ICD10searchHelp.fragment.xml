@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idIcd10SearchHelp" showHeader="false" class="addInsDialogCss" contentWidth="35rem" resizable="true">
+		<endButton>
+			<Button text="{i18n>CLOSE}" class="customCancelCss" press="onCloseICD10"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>SELECT_INS}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<HBox justifyContent="End">
+			<HBox>
+				<SearchField class="searchCustomClass" liveChange="onSearchDialogIcd10"/>
+			</HBox>
+		</HBox>
+		<content>
+			<!-- items="{path: 'expenseModel>/accountTableData'}" -->
+			<Table id="idIcd10Table" noDataText="No Data" mode="SingleSelectLeft" selectionChange="onIcdCauseItemPress"
+				items="{path: 'appModel>/icd10SearchHelp'}" class="boxClass tableClass" alternateRowColors="true">
+				<columns>
+					<Column hAlign="Begin">
+						<Label text="{i18n>ICD10CODE}" design="Bold"/>
+					</Column>
+					<Column hAlign="Begin">
+						<Label text="{i18n>ICD10DESCTH}" design="Bold"/>
+					</Column>
+					<Column hAlign="Begin">
+						<Label text="{i18n>ICD10DESCEN}" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<!-- {appModel>CLAIM_GROUP_DESC} -->
+							<Text text="{appModel>ICD_CODE}"/>
+							<Text text="{appModel>ICD_DESC_TH}"/>
+							<Text text="{appModel>ICD_DESC_EN}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

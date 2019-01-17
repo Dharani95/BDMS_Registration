@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="idCompareIns" showHeader="false" contentWidth="100%" contentHeight="100%" resizable="true" class="sapUiSizeCompact">
+		<beginButton>
+			<Button text="{i18n>PRINT}" press="onPrint" class="blueBcgClass"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>BACK}" press="onBackPress"/>
+		</endButton>
+		<content>
+			<Panel width="auto" expandable="true" expanded="true" class="bcgCss">
+				<headerToolbar>
+					<Toolbar height="3rem" class="customPanelToolbarCss">
+						<Title text="{i18n>COM_POL_COVERAGE}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<HBox width="100%">
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>TITLE_HEADER}" design="Bold"/>
+								<Text text="{appModel>/titleHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>FNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/firstNameHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>MNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/middleNameHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>LNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/lastNameHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>HN_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/hospitalNumber}"/>
+							</VBox>
+						</VBox>
+					</HBox>
+				</content>
+			</Panel>
+			<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true">
+				<Panel width="auto" class="bcgCss">
+					<headerToolbar>
+						<Toolbar height="3rem" class="customToolBarCss">
+							<Title text="{i18n>MORE_DET}"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<Table class="policyTblCss" alternateRowColors="true"
+							items="{path:'appModel>/compareCoverageItems', sorter:{path : 'itemizedCode' , ascending : true, group : false} }">
+							<columns>
+								<Column hAlign="Left" width="6rem">
+									<Label text="{i18n>INSURED_TYPE}" design="Bold"/>
+								</Column>
+								<Column hAlign="Left" width="7rem">
+									<Label text="{i18n>POL_NUM}" design="Bold"/>
+								</Column>
+								<Column hAlign="Left" width="7rem">
+									<Label text="{i18n>ITEMIZED_CODE}" design="Bold"/>
+								</Column>
+								<Column hAlign="Left" width="10rem">
+									<Label text="{i18n>ITEMIZED_DESC}" design="Bold"/>
+								</Column>
+								<Column hAlign="Center" width="7rem">
+									<Label text="{i18n>BEN_VALUE}" design="Bold"/>
+								</Column>
+								<Column hAlign="Left" width="6rem">
+									<Label text="{i18n>BEN_PER}" design="Bold"/>
+								</Column>
+								<Column hAlign="Center" width="11rem">
+									<Label text="{i18n>BEN_REM_VAL}" design="Bold"/>
+								</Column>
+								<Column hAlign="Left" width="7rem">
+									<Label text="{i18n>BEN_UNIT}" design="Bold"/>
+								</Column>
+								<Column hAlign="Center" width="9rem">
+									<Label text="{i18n>BEN_COPAY_VAL}" design="Bold"/>
+								</Column>
+								<Column hAlign="Center" width="8rem">
+									<Label text="{i18n>BEN_COPAY_UNIT}" design="Bold"/>
+								</Column>
+								<Column hAlign="Left" width="10rem">
+									<Label text="{i18n>REASON}" design="Bold"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{appModel>insuredType}"/>
+										<Text text="{appModel>policyNo}"/>
+										<Text text="{appModel>itemizedCode}"/>
+										<TextArea value="{appModel>itemizedDesc}" growing="true" growingMaxLines="0"/>
+										<Text text="{path: 'appModel>benValue', formatter: '.formatter.getNumberFormat'}"/>
+										<Text text="{appModel>benPer}"/>
+										<Text text="{path: 'appModel>benRemValue', formatter: '.formatter.getNumberFormat'}"/>
+										<Text text="{appModel>benUnit}"/>
+										<Text text="{appModel>coPayVal}"/>
+										<Text text="{appModel>coPayUnit}"/>
+										<Text text="{appModel>reason}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
+				</Panel>
+			</ScrollContainer>
+			<!-- items="{path: 'expenseModel>/accountTableData'}" -->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idReason" showHeader="false" class="addInsDialogCss" contentWidth="35rem" resizable="true">
+		<endButton>
+			<Button text="{i18n>CLOSE}" class="customCancelCss sapUiSizeCompact" press="onClosePress"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>REASON}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<List class="reasonListCss" items="{appModel>/coverageReason}" growing="true" growingThreshold="5" growingScrollToLoad="false">
+				<StandardListItem title="{appModel>reason}"/>
+			</List>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

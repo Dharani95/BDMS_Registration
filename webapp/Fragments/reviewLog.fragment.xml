@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="idReviewLog" showHeader="false" class="addInsDialogCss" contentWidth="50rem" resizable="true">
+		<endButton>
+			<Button text="Close" class="customCancelCss" press="onCloseReviewLog"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="Review Log" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<Table id="idReviewLogTable" noDataText="No Data" showNoData="true" class="policyTblCss" selectionChange="onSelectAccItem"
+				alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center">
+						<Label text="No." design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Date" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Time" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Channel" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="IN/OUT" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Document" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="1"/>
+							<Text text="12/08/2019"/>
+							<Text text="23:44"/>
+							<Text text="EMAIL"/>
+							<Text text="OUT"/>
+							<Link text="Link"/>
+							<Button text="Follow Up" class="blueBcgClass"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem>
+						<cells>
+							<Text text="1"/>
+							<Text text="12/08/2019"/>
+							<Text text="23:44"/>
+							<Text text="EMAIL"/>
+							<Text text="OUT"/>
+							<Link text="Link"/>
+							<Button text="Follow Up" class="blueBcgClass"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!-- items="{path: 'expenseModel>/accountTableData'}" -->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

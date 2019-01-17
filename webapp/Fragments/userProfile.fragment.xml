@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Dialog title="{i18n>PROFILE}" class="sapUiPopupWithPadding">
+		<beginButton>
+			<Button text="{i18n>CLOSE}" press="fnCloseUserProfile"></Button>
+		</beginButton>
+		<content>
+			<VBox>
+				<HBox>
+					<Label text="{i18n>NAME}:" design="Bold" wrapping="true" class="sapUiSmallMarginEnd"></Label>
+					<Text text="{oUserModel>/displayName}"></Text>
+				</HBox>
+				<HBox>
+					<Label text="{i18n>EMAIL}:" design="Bold" wrapping="true" class="sapUiSmallMarginEnd"></Label>
+					<Text text="{oUserModel>/email}"></Text>
+				</HBox>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

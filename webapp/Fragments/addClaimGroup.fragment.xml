@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idAddClmGrp" showHeader="false" class="addInsDialogCss sapUiSizeCompact" resizable="true" contentWidth="35rem">
+		<beginButton>
+			<Button text="{i18n>CANCEL}" class="customCancelCss" press="onCancelClmGrp"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>DONE}" class="customSaveCss" press="confirmClaimGroup"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>SEL_CLM_GRP}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<HBox justifyContent="End">
+			<HBox>
+				<SearchField class="searchCustomClass sapUiTinyMarginEnd" liveChange="onSearchDialogClaimGroup" width="75%"/>
+			</HBox>
+		</HBox>
+		<content>
+			<!-- items="{path: 'expenseModel>/accountTableData'}" -->
+			<Table id="idClmGrpTable" noDataText="No Data" mode="SingleSelectLeft" items="{path: 'appModel>/claimGroupData'}" class="commonTblClass"
+				alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center" width="20%">
+						<Label text="{i18n>SL_NO}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left">
+						<Label text="{i18n>CLM_GRP_TYPE}" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<!-- {appModel>CLAIM_GROUP_DESC} -->
+							<Text text="{appModel>SLNO}"/>
+							<Text text="{appModel>CLAIM_GROUP_DESC}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

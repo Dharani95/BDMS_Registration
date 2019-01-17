@@ -1,0 +1,203 @@
+{
+	"welcomeFile": "/webapp/index.html",
+	"routes": [{
+			"path": "/resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/resources"
+			},
+			"description": "SAPUI5 Resources"
+		}, {
+			"path": "/test-resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/test-resources"
+			},
+			"description": "SAPUI5 Test Resources"
+		}, {
+			"path": "/services/userapi",
+			"target": {
+				"type": "service",
+				"name": "userapi"
+			}
+		}, {
+			"path": "/bdms/ims/reg/Registration_Service/XSODATA/ReadAll.xsodata/",
+			"target": {
+				"name": "bdms_ims_js",
+				"entryPath": "/bdms/ims/reg/Registration_Service/XSODATA/ReadAll.xsodata/"
+			}
+		}, {
+			"path": "http/insureridentification",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/insureridentification"
+			}
+		}, {
+			"path": "http/v1/registration/policycoverage",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/policycoverage"
+			}
+		}, {
+			"path": "http/v1/registration/getaccidentclaimhistory",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/getaccidentclaimhistory"
+			}
+		},
+
+		{
+			"path": "http/v1/registration/getdocument/status",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/getdocument/status"
+			}
+		}, {
+			"path": "http/v1/registration/registerclaim/reservations",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/registerclaim/reservations"
+			}
+		}, {
+			"path": "http/v1/registration/reservation/update",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/reservation/update"
+			}
+		},
+
+		{
+			"path": "http/v1/registration/patientdetails/get",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/patientdetails/get"
+			}
+		}, {
+			"path": "http/v1/registration/claimreservation/create",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/claimreservation/create"
+			}
+		}, {
+			"path": "http/v1/registration/claimreservation/update",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/claimreservation/update"
+			}
+		}, {
+			"path": "http/v1/registration/document/get",
+			"target": {
+				"name": "bdms_ims_cpi",
+				"entryPath": "http/v1/registration/document/get"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/SaveReserve.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/SaveReserve.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/Destinations/CallBdmsReserveSP.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/Destinations/CallBdmsReserveSP.xsjs"
+			}
+		},
+
+		{
+			"path": "bdms/ims/reg/Registration_Service/XSJS/CsrfReturn.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/CsrfReturn.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/UpdateReserveNumber.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/UpdateReserveNumber.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/CreateUpdatePatientDetails.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/CreateUpdatePatientDetails.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/Insurance.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/Insurance.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/FollowUpNoteSave.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/FollowUpNoteSave.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/GetReserveNumber.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/GetReserveNumber.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/DocumentListService.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/DocumentListService.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/RequestedDocument.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/RequestedDocument.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/ClaimRequestedDocPost.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/ClaimRequestedDocPost.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/FollowUpNoteGet.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/FollowUpNoteGet.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/DocumentCheckList.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/DocumentCheckList.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/DocumentCheckListSave.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/DocumentCheckListSave.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/GuaranteeLetter.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/GuaranteeLetter.xsjs"
+			}
+		}, {
+			"path": "bdms/ims/reg/Registration_Service/XSJS/GuaranteeLetterSave.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/GuaranteeLetterSave.xsjs"
+			}
+		},
+		{
+			"path": "bdms/ims/reg/Registration_Service/XSJS/GetCommModeForLocalInsurance.xsjs",
+			"target": {
+				"name": "bdms_ims_xsjs",
+				"entryPath": "bdms/ims/reg/Registration_Service/XSJS/GetCommModeForLocalInsurance.xsjs"
+			}
+		}
+	],
+	"sendWelcomeFileRedirect": true
+}

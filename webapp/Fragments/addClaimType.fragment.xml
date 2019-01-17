@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idAddClmType" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="35rem" resizable="true">
+		<beginButton>
+			<Button text="{i18n>CANCEL}" class="customCancelCss" press="onCancelClmTyp"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>DONE}" class="customSaveCss" press="confirmClaimType"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>SEL_CLM_TYPE}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<HBox justifyContent="End">
+			<HBox>
+				<SearchField class="searchCustomClass" liveChange="onSearchDialogClaimType"/>
+			</HBox>
+		</HBox>
+		<content>
+			<Table id="idClmTypeTable" noDataText="No Data" mode="SingleSelectLeft" items="{path: 'appModel>/claimTypeData'}" class="commonTblClass"
+				alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center" class="sapUiSmallMarginEnd" width="20%">
+						<Label text="{i18n>SL_NO}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" class="sapUiSmallMarginEnd">
+						<Label text="{i18n>CLM_TYPE}" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<!-- {expenseModel>value} -->
+							<Text text="{appModel>SLNO}"/>
+							<Text text="{appModel>CLAIM_TYPE_DESC}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

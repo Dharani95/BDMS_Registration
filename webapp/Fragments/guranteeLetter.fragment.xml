@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="idGuranteeDialog" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="35rem" resizable="true">
+		<beginButton>
+			<Button text="{i18n>CLOSE}" class="customCancelCss" press="onCloseGurantee"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>SAVE}" class="customSaveCss" press="onSaveGurantee"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>GUR_LETTER}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<HBox justifyContent="End">
+				<Button text="{i18n>ADD_BTN}" icon="sap-icon://add" type="Default" iconFirst="true" press="onAddGurLetter" tooltip="Add an item"
+					class="addButtonClass"></Button>
+			</HBox>
+			<Table id="idGuranteeTable" noDataText="No Data" showNoData="true" class="policyTblCss" items="{appModel>/guranteeTable}"
+				alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center">
+						<Label text="{i18n>NUMBER}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" width="8rem">
+						<Label text="{i18n>DOC_NAME}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>FILE}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" width="6rem">
+						<Label text="" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" width="5rem">
+						<Label text="" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<VBox>
+								<Text text="{appModel>srNum}" visible="{= ${appModel>docAvail} === 1 ? true : false}"/>
+								<Input value="{appModel>srNum}" visible="{= ${appModel>docAvail} === 0 ? true : false}" class="tableInputCss"/>
+							</VBox>
+							<VBox>
+								<Text text="{appModel>docName}" visible="{= ${appModel>docAvail} === 1 ? true : false}" width="6rem"></Text>
+								<!--<Text text="{appModel>docName}" visible="{= ${appModel>docAvail} === 1 ? true : false}" class="tableInputCss"/>-->
+								<Input type="Text" value="{appModel>docName}" valueHelpOnly="true" valueHelpRequest="onSearchDocList" showValueHelp="true"
+									visible="{= ${appModel>docAvail} === 0 ? true : false}" width="6rem" class="tableInputCss"></Input>
+							</VBox>
+							<VBox>
+								<Link text="{appModel>fileName}" href="{appModel>fileUrl}" visible="{= ${appModel>docAvail} === 1 ? true : false}"/>
+								<Link text="{appModel>fileName}" href="{appModel>fileUrl}" visible="{= ${appModel>statusAvailable} === 0 ? true : false}"/>
+							</VBox>
+							<VBox>
+								<!--<Button text="Upload" press="onReqDocUpload" visible="{= ${appModel>docAvail} === 1 ? true : false}" class="blueBcgClass sapUiSmallMarginEnd"/>-->
+								<Button text="Upload" press="onReqDocUpload" visible="{= ${appModel>docAvail} === 0 ? true : false}"
+									class="blueBcgClass sapUiSmallMarginEnd"/>
+							</VBox>
+							<core:Icon src="sap-icon://delete" visible="{= ${appModel>docAvail} === 0 ? true : false}" color="red" class="sapUiSmallMarginBeginEnd"
+								press="onDeleteGurantee">
+								<core:layoutData>
+									<FlexItemData growFactor="1"/>
+								</core:layoutData>
+							</core:Icon>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!-- items="{path: 'expenseModel>/accountTableData'}" -->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

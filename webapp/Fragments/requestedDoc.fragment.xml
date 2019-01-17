@@ -1,0 +1,118 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="idReqDocDialog" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="75rem" contentHeight="10rem" resizable="true">
+		<beginButton>
+			<Button text="{i18n>CLOSE}" class="customCancelCss" press="onCloseRequestedDoc"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>SEND}" class="customSaveCss" press="onSendRequestedDoc"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>REQ_DOCS}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<HBox justifyContent="End">
+				<Button text="{i18n>ADD_BTN}" icon="sap-icon://add" type="Default" iconFirst="true" press="onAddRequestedDoc" tooltip="Add an item"
+					class="addButtonClass sapUiSmallMarginEnd"></Button>
+			</HBox>
+			<Table id="idReqDocTable" noDataText="No Data" showNoData="true" items="{appModel>/requestedDoc}" class="policyTblCss" mode="MultiSelect"
+				selectionChange="onSelectAccItem" alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center">
+						<Label text="{i18n>DOCUMENT}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>FROM_COL}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>TO_COL}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>DOC_LINK}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>AVAILABILITY}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>STATUS}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>REMARK}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<VBox>
+								<Text text="{appModel>docName}" width="6rem" visible="{= ${appModel>sentToIns} === 1 ? true : false}"></Text>
+								<Input value="{appModel>docName}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onSearchDocList" width="6rem"
+									class="tableInputCss" visible="{= ${appModel>sentToIns} === 0 ? true : false}"></Input>
+							</VBox>
+							<VBox>
+								<Text text="{appModel>fromDate}" width="6rem" visible="{= ${appModel>sentToIns} === 1 ? true : false}"></Text>
+								<DatePicker value="{appModel>fromDate}" placeholder="Enter Date ..." change="handleChange" class="tableInputCss"
+									visible="{= ${appModel>sentToIns} === 0 ? true : false}"/>
+							</VBox>
+							<VBox>
+								<Text text="{appModel>fromDate}" width="6rem" visible="{= ${appModel>sentToIns} === 1 ? true : false}"></Text>
+								<DatePicker value="{appModel>toDate}" placeholder="Enter Date ..." change="handleChange" class="tableInputCss"
+									visible="{= ${appModel>sentToIns} === 0 ? true : false}"/>
+							</VBox>
+							<VBox>
+								<!--<Link text="{appModel>fileName}" href="{appModel>fileUrl}" visible="{= ${appModel>sentToIns} === 1 ? true : false}"/>-->
+								<!--<Link text="Link" visible="{= ${appModel>statusAvailable} === true &amp;&amp; ${appModel>sentToIns} === 0 ? true : false}"/>-->
+								
+								<Link text="Link"  press="onDocLinkPress" visible="{= ${appModel>sentToIns} === 1 &amp;&amp; ${appModel>docScanAvailable} === true ? true : false}"/>
+								<Link text="Link"  href="{appModel>fileUrl}" visible="{= ${appModel>sentToIns} === 1 &amp;&amp; ${appModel>dmsAvailable} === true ? true : false}"/>
+								<Link text="Link" href="{appModel>fileUrl}" visible="{= ${appModel>sentToIns} === 0 &amp;&amp; ${appModel>dmsAvailable} === true ? true : false}"/>
+								<Link text="Link" press="onDocLinkPress" visible="{= ${appModel>sentToIns} === 0 &amp;&amp; ${appModel>docScanAvailable} === true ? true : false}"/>
+							</VBox>
+							<VBox>
+								<core:Icon src="sap-icon://complete" color="limegreen" class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop"
+									visible="{= ${appModel>statusAvailable} === true ? true : false}" press="onEdit">
+									<core:layoutData>
+										<FlexItemData growFactor="1"/>
+									</core:layoutData>
+								</core:Icon>
+								<core:Icon visible="{= ${appModel>statusError} === true ? true : false}" src="sap-icon://sys-cancel" color="red"
+									class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop" press="onEdit">
+									<core:layoutData>
+										<FlexItemData growFactor="1"/>
+									</core:layoutData>
+								</core:Icon>
+							</VBox>
+							<VBox>
+									<Button text="Get Status" class="blueBcgClass sapUiSmallMarginEnd" press="onReqDocGetStatus"
+								visible="{= ${appModel>sentToIns} === 1 &amp;&amp; ${appModel>getStatusBtn} === true ? true : false }"/> 
+							 <Button text="Get Status" press="onReqDocGetStatus" visible="{= ${appModel>sentToIns} === 0 ? true : false}" class="blueBcgClass"/>	
+							</VBox>
+							
+							<Button text="Upload" press="onReqDocUpload"  class="blueBcgClass"/>
+							<!-- visible="{= ${appModel>sentToIns} === 0 ? true : false}"
+							-->
+							<VBox>
+								<Text text="{appModel>fromDate}" width="6rem" visible="{= ${appModel>sentToIns} === 1 ? true : false}"></Text>
+								<Input width="6rem" value="{appModel>remark}" visible="{= ${appModel>sentToIns} === 0 ? true : false}" class="tableInputCss"></Input>
+							</VBox>
+							<!--<Button icon="sap-icon://delete" type="Default" iconFirst="true" press="onDeleteRequestedDoc" tooltip="Delete Item"/>-->
+							<core:Icon src="sap-icon://delete" color="red" visible="{= ${appModel>sentToIns} === 0 ? true : false}"
+								class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop" press="onDeleteRequestedDoc">
+								<core:layoutData>
+									<FlexItemData growFactor="1"/>
+								</core:layoutData>
+							</core:Icon>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

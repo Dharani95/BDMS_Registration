@@ -1,0 +1,178 @@
+<mvc:View controllerName="in.BDMSInsurance.controller.Identification" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Page floatingFooter="true" id="idIdentificationPage" class="sapUiSizeCompact" showHeader="true">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<HBox justifyContent="SpaceBetween">
+						<HBox>
+							<Image src="{appModel>/hospitalLogo}" height="2rem" class="sapUiSmallMarginBegin" tooltip="{appModel>/hospitalName}"/>
+							<Title text="{appModel>/hospitalName}" level="H3" class="sapUiSmallMarginBegin headerCss"/>
+						</HBox>
+						<HBox>
+							<Button icon="sap-icon://person-placeholder" press="fnUserProfile" class="closeAppButtonClass" tooltip="{i18n>PROFILE}"></Button>
+							<Button icon="sap-icon://decline" press="onCloseButtonPress" class="closeAppButtonClass" tooltip="{i18n>CLOSE_APP}"></Button>
+						</HBox>
+					</HBox>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<content>
+			<Panel width="auto" expandable="true" expanded="true" class="sapUiTinyMarginBegin bcgCss">
+				<headerToolbar>
+					<Toolbar height="2.5rem" class="customPanelToolbarCss">
+						<Title text="{i18n>IDENTIFICATION_TITLE}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<HBox width="100%">
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>TITLE_HEADER}" design="Bold"/>
+								<Text text="{appModel>/titleHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>GENDER_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/gender}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>ID_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/nationalId}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>FNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/firstNameHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>DOB_HEADER}" design="Bold"/>
+								<Text text="{path:'appModel>/patientDetails/birthDate', formatter: '.formatter.getDateFormat'}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>PASSPORT_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/passportNumber}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>MNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/middleNameHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>AGE_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/age}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>LNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/lastNameHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>PDTYPE_HEADER}" design="Bold"/>
+								<Select forceSelection="true" selectedKey="{appModel>/selectedPdType}" change="onProductTypeSelect" items="{appModel>/productType}"
+									class="selectBorderBottomCss selectHeightChangeClass" width="7rem">
+									<core:Item key="{appModel>PRODUCT_TYPE_CODE}" text="{appModel>PRODUCT_TYPE_DESC}"/>
+								</Select>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>HN_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/hospitalNumber}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>EN_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/episodeNumber}"/>
+							</VBox>
+							
+						</VBox>
+					</HBox>
+				</content>
+			</Panel>
+			<Panel class="sapUiTinyMarginBegin bcgCss" width="auto">
+				<headerToolbar>
+					<Toolbar height="2.5rem" class="customToolBarCss">
+						<Title text="{i18n>INS_DETAILS}"/>
+						<ToolbarSpacer/>
+						<Button text="{i18n>ADD_BTN}" icon="sap-icon://add" type="Default" iconFirst="true" press="onAddRow" tooltip="Add an item"
+							class="addButtonClass"></Button>
+						<Button text="{i18n>DEL_BTN}" icon="sap-icon://delete" type="Reject" iconFirst="true" press="onDeleteRow" tooltip="Delete an Item"></Button>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<Table id="idProductsTable" noDataText="No Data" items="{appModel>/insuranceDetailsTable}" inset="inset" mode="MultiSelect" width="100%"
+						alternateRowColors="true">
+						<columns>
+							<Column hAlign="Center" visible="false" width="15%">
+								<Label text="{i18n>PRE_ARR}" design="Bold"/>
+							</Column>
+							<Column hAlign="Center" visible="false" width="15%">
+								<Label text="{i18n>OLD_RES_NUM}" design="Bold"/>
+							</Column>
+							<Column hAlign="Center" width="15%">
+								<Label text="{i18n>INSURANCE}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="15%">
+								<Label text="{i18n>CLM_GRP}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="15%">
+								<Label text="{i18n>CLM_TYPE}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="15%">
+								<Label text="{i18n>POL_NUM}" design="Bold"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="13%">
+								<Label text="{i18n>POL_STATUS}" design="Bold"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="12%">
+								<Label text="{i18n>GEN_ID}" design="Bold"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="10%">
+								<Label text="{i18n>QR_CODE}" design="Bold"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="5%">
+								<Text text=""/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem class="borderBottomCss">
+								<cells>
+									<Input type="Text" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onSearchPreArr" class="tableInputCss"></Input>
+									<Input type="Text" value="" class="tableInputCss"></Input>
+									<Input type="Text" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onSearchIns" value="{appModel>insurance}"
+										class="tableInputCss"></Input>
+									<Input type="Text" showValueHelp="true" valueHelpOnly="true" value="{appModel>clmGroup}" valueHelpRequest="onSearchClmGrp"
+										class="tableInputCss"></Input>
+									<Input type="Text" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onSearchClmType" value="{appModel>clmType}"
+										class="tableInputCss"></Input>
+									<Input type="Text" value="{appModel>policyNumber}" class="tableInputCss"></Input>
+									<ComboBox class="tableComboBoxCss" items="{appModel>policyStatusData}" selectedKey="{appModel>policyStatusCode}"
+										value="{appModel>policyStatus}" enabled="{appModel>bPolicyEnabled}">
+										<items>
+											<core:Item text="{path:'appModel>POLICY_STATUS_DESC'}" key="{appModel>POLICY_STATUS_CODE}"/>
+										</items>
+									</ComboBox>
+									<Input type="Text" value="{appModel>genId}" class="tableInputCss"></Input>
+									<Input type="Text" value="{appModel>qrCode}" class="tableInputCss"></Input>
+									<core:Icon src="sap-icon://copy" press="onCopyPress" class="sapUiSmallMarginTop" tooltip="Copy the insurance">
+										<core:layoutData>
+											<FlexItemData growFactor="1"/>
+										</core:layoutData>
+									</core:Icon>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<OverflowToolbar class="customFooterClass">
+				<ToolbarSpacer/>
+				<Button text="{i18n>NXT_BTN}" press="onNextPress" class="whiteBorderClass"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

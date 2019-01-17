@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idDocList" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="35rem" resizable="true">
+		<beginButton>
+			<Button text="{i18n>CANCEL}" class="customCancelCss" press="onCancelDocList"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>DONE}" class="customSaveCss" press="confirmDocList"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>SELECT_DOC_LIST}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<HBox justifyContent="End">
+			<HBox>
+				<SearchField class="searchCustomClass" liveChange="onSearchDialogIns"/>
+			</HBox>
+		</HBox>
+		<content>
+			<Table id="idDocListTable" noDataText="No Data" mode="SingleSelectLeft" items="{path: 'appModel>/docList'}" class="boxClass tableClass"
+				alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center" class="sapUiSmallMarginBeginEnd">
+						<Label text="{i18n>DOC_CODE}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" class="sapUiSmallMarginBeginEnd">
+						<Label text="{i18n>DOC_NAME}" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{appModel>docCode}"/>
+							<Text text="{appModel>docName}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

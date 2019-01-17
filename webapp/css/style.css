@@ -1,0 +1,261 @@
+ /* Enter your custom styles here */
+/*open sans font for all screen*/
+
+@font-face {
+    font-family: headerFont;
+    src: url('../css/fonts/OpenSans-Regular.ttf');
+    /*  format('Italic') */
+} 
+@font-face {
+    font-family: cssitalic;
+    src: url('../css/fonts/OpenSans-Semibold.ttf');
+    /*  format('Italic') */
+} 
+.fontFamilyCss {
+	font-family:headerFont;
+	font-size:12px;
+	}
+.try {
+	font-family:cssitalic;
+	/*font-size:12px;*/
+	}
+/**/
+/*--------- page header css------------*/
+
+.headerCss {
+	color: #0071BC !important;
+	    font-weight: bold;
+}
+/* ----------------------------------- */
+/* -------panel css-------*/
+/* for all table row and header color change and iconTabBar header color change*/
+.tableColorCss .sapMITBScrollContainer{
+    margin-left: 0px !important;
+}
+.tableColorCss .sapMITH{
+ background-color: transparent;
+}
+
+.tableColorCss .sapMTableTH{
+	background: #F8F8F8;
+}
+.tableColorCss .sapMITBHead{
+	    margin: 0rem 0.75rem 0 0.25rem !important;
+}
+/* end of tableColorCss*/
+.hideContentEndLine .sapMITBContent{
+	    border-bottom:none;
+}
+.contentAreaSpace .sapMPanelContent{
+	    padding: 0rem !important;
+} 
+.bcgCss {
+    background-color: #ffffff;
+}
+.bcgCss .sapMPanelContent{
+	
+       padding: 0.625rem 1rem 0rem 1rem;
+        border-bottom:none;
+}
+.bcgCss .sapMPanelWrappingDivTbExpanded{
+	    border-bottom: 2px solid #C8E0F0 !important;
+}
+.customPanelToolbarCss .sapMTitle {
+    color: #0071BC;
+}
+/* ----------------------------------- */
+/*----------- All toolbar css------------*/
+.customToolBarCss {
+    border-bottom: 2px solid #C8E0F0 !important;
+}
+.customToolBarCss .sapMTitle {
+    color: #0071BC;
+}
+/* ----------------------------------- */
+/* ----------- border bottom css -----------*/
+
+.checkBoxVisibilityCss .sapMListTblRow:first-child .sapMCbBg:first-child {
+		visibility:hidden !important;
+}
+.selectBorderBottomCss{
+	border: none !important;
+	    border-bottom: 2px solid #655252 !important;
+}
+.comboBoxBorderBottomCss .sapMInputBaseContentWrapper{
+	    border: none;
+	    border-bottom: 2px solid #655252 !important;
+}
+.inputBorderBottomCss .sapMInputBaseInner {
+    border-bottom: 2px solid #655252;
+}
+
+.inputBorderBottomCss .sapMInputBaseContentWrapper{
+border: none;	
+}
+
+/* especially for table*/
+.tableInputCss  .sapMInputBaseContentWrapper {
+	    /*height: 58px;*/
+	  height: 35px !important; 
+	  
+    border: none !important;
+    border-bottom: 2px solid #0071BC !important;
+}
+ .tableSearchCss .sapMSFF{
+  height: 35px !important;  
+    border: none !important;
+    border-bottom: 2px solid #0071BC !important;	
+ }
+
+.tableComboBoxCss .sapMInputBaseContentWrapper{
+	/*   .sapMComboBoxInner */
+	border: none !important;
+	height:35px !important;
+	  border-bottom: 2px solid #0071BC !important;
+}
+/* coverage table reson list css*/
+.reasonListCss .sapMSLI {
+    height: 3rem !important;
+}
+/* ----------------------------------- */
+
+/*---------- Policy view ------------*/
+.policyTblCss .sapMLabel {
+    white-space: inherit !important;
+}
+.policyTblCss .sapMLnk {
+    white-space: normal;
+}
+/* ----------------------------------- */
+/* -------- dialog css ----------*/
+
+.addInsDialogCss .sapMTBStandard {
+    border-bottom: 2px solid #C8E0F0 !important;
+}
+
+.toolbarCss .sapMLabel {
+    color: #0071BC !important;
+    font-size: 1rem !important;
+}
+
+.addPolicyPadding {
+    padding: 30px;
+}
+
+.searchCustomClass .sapMSFF {
+    border-radius: 6px;
+}
+.accClmHisCss{
+	padding:15px;
+}
+/*.accClmHisCss .sapMInputBaseInner{
+	border: none;
+    border-bottom: 2px solid #008BC7;
+}*/
+.accClmHistBoxShadow{
+    border: 1px solid gainsboro;
+    background: #fff;
+    margin: 2%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    font-family: Open Sans !important;
+    margin-top: 15px;
+    width: auto !important;
+
+}
+/* ----------------------------------- */
+/* --------- All button css ----------*/
+
+.customCancelCss .sapMBtnInner {
+    color: #fff !important;
+    background-color: #F30000 !important;
+}
+
+.customSaveCss .sapMBtnInner {
+    color: #fff !important;
+    background-color: #3C9A06 !important;
+}
+
+.addButtonClass .sapMBtnInner {
+    border: 1px solid #0071BC !important;
+    color: #0071BC;
+}
+
+.addButtonClass .sapMBtnIcon {
+    color: #0071BC;
+}
+
+.whiteBorderClass .sapMBtnInner {
+    border: 1px solid #ffffff !important;
+    color: #ffffff;
+}
+
+.whiteBorderClass .sapMBtnInner.sapMBtnText {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.blueBcgClass .sapMBtnInner {
+    background-color: #0071BC !important;
+    border: 1px solid #0071BC !important;
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+.accidentButtonCss .sapMBtnInner{
+	   color: #fff;
+    background-color: #E09B05!important;/* D : important has been added to disable invisibility during hovering */
+    text-shadow: none !important;
+}
+/* ----------------------------------- */
+/* ------------- Footer Class ----------------- */
+
+.customFooterClass{
+    background-color: #395c79 !important;
+    border-top: 1px solid #3B5261 !important;
+}
+/*---------------------D : Classes for Bug Fix----------------------------*/
+.selectHeightChangeClass{
+	height : 1.5rem!important;
+}
+.closeAppButtonClass{
+	justifyContent : flex-end;
+}
+/*-----D : Class For Fragment Tables-----------------------*/
+.ClmGrpTableClass{
+	/*margin: 2rem 4rem 2rem 2rem!important;*/
+	padding-left: 1rem;
+
+}
+/*---------------------D : End Of Classes for Bug Fix---------------------*/
+
+.commonTblClass {
+     padding-left: 0.5rem;
+     padding-right: 0.5rem;
+ }
+ 
+ .commonTblClass .sapMListTblSelCol {
+     width: 0;
+ }
+ 
+ .sapMRb:focus:before {
+     border: none;
+ } 
+ 
+ .submitRevStickClass {
+    height: 10rem;
+    overflow-x: scroll;
+}  
+.textAlignCss .sapUiSizeCompact .sapMInputBaseInner{
+	    padding: 0.5rem 0rem 1rem 1rem !important;
+}
+.getPolicyTableClass .sapMListInsetBG {
+    padding: 1rem 1rem 1rem 0;
+}
+	
+.sapMLabelRequired:before{
+	color: #ec9b9b !important;
+} 
+.fileUploaderCss .sapMInputBaseContentWrapper{
+	display:none;
+	border:none
+}

@@ -1,0 +1,568 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="in.BDMSInsurance.controller.VerifyPatientIdentity" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showNavButton="false" id="idVerifyPatientPage" floatingFooter="true" class="sapUiSizeCompact">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<HBox justifyContent="SpaceBetween">
+						<HBox>
+							<Image src="{appModel>/hospitalLogo}" height="2rem" class="sapUiSmallMarginBegin"/>
+							<Title text="{appModel>/hospitalName}" level="H3" class="sapUiSmallMarginBegin headerCss"/>
+						</HBox>
+						<Button icon="sap-icon://decline" press="onCloseButtonPress" class="closeAppButtonClass" tooltip="{i18n>CLOSE_APP}"></Button>
+					</HBox>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<content>
+			<Panel width="auto" expandable="true" expanded="true" class="sapUiTinyMarginTopBottom sapUiTinyMarginBeginEnd bcgCss">
+				<headerToolbar>
+					<Toolbar height="3rem" class="customPanelToolbarCss">
+						<Title text="{i18n>IDENTIFICATION_TITLE}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<HBox width="100%">
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>TITLE_HEADER}" design="Bold"/>
+								<Text text="{appModel>/titleHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>GENDER_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/gender}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>ID_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/nationalId}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>FNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/firstNameHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>DOB_HEADER}" design="Bold"/>
+								<Text text="{path:'appModel>/patientDetails/birthDate', formatter: '.formatter.getDateFormat'}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>PASSPORT_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/passportNumber}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>MNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/middleNameHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>AGE_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/age}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>LNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/lastNameHeader}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>PDTYPE_HEADER}" design="Bold"/>
+								<Text text="{path: 'appModel>/productTypeHeader', formatter: '.formatter.getPatientType'}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Button text="{i18n>DOC_CHCKLIST}" class="blueBcgClass sapUiSmallMarginEnd" press="onDocCheckListPress"
+									visible="{= ${appModel>/optionDocButton} === true ? true : false}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>HN_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/hospitalNumber}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>EN_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/episodeNumber}"/>
+							</VBox>
+						</VBox>
+					</HBox>
+				</content>
+			</Panel>
+			<Panel width="auto" class="bcgCss">
+				<headerToolbar>
+					<Toolbar height="3rem" class="customToolBarCss">
+						<Title text="{i18n>INS_DETAILS}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<IconTabBar id="idIconFilterBar" items="{appModel>/iconTabBarData}" showOverflowSelectList="true" select="onSelectIconTabFilter"
+						class="sapUiResponsiveContentPadding tableColorCss hideContentEndLine">
+						<items>
+							<IconTabFilter text="{appModel>insurance}" key="{appModel>key}">
+								<!-- verify patient vbox  -->
+								<VBox visible="{= ${appModel>verifyPatientFragment} === true ? true : false}">
+									<HBox width="100%">
+										<HBox width="75%" class="sapUiSmallMarginBottom">
+											<VBox class="sapUiMediumMarginBeginEnd" width="auto">
+												<Image src="{appModel>insLogo}" height="2rem" class="sapUiSmallMarginBegin"/>
+											</VBox>
+											<VBox class="sapUiMediumMarginBeginEnd" width="auto">
+												<Label text="{i18n>CLM_GRP}" design="Bold"/>
+												<Text text="{appModel>clmGroup}"/>
+											</VBox>
+											<VBox class="sapUiMediumMarginBeginEnd" width="auto">
+												<Label text="{i18n>CLM_TYPE}" design="Bold"/>
+												<Text text="{appModel>clmType}"/>
+											</VBox>
+										</HBox>
+										<HBox justifyContent="End" width="25%">
+											<Button text="{i18n>ACC_HIS}" class="accidentButtonCss sapUiMediumMarginEnd" press="onAccidentPress"
+												visible="{= ${appModel>accpanelVisible} === true ? true : false}"/>
+											<Button text="{i18n>GET_POLICY}" class="customSaveCss" press="onPolicyPress"/>
+										</HBox>
+									</HBox>
+									<Table id="idVerPatientTable" items="{appModel>verifyPatientTable}" class="policyTblCss checkBoxVisibilityCss" mode="MultiSelect"
+										selectionChange="onSelectionChange" alternateRowColors="true">
+										<columns>
+											<Column hAlign="Center" width="4%">
+												<Label text="" design="Bold"/>
+											</Column>
+											<Column hAlign="Left">
+												<Label text="{i18n>ID_HEADER}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+												<Label text="{i18n>FNAME_TH}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Left">
+												<Label text="{i18n>MNAME_TH}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Left">
+												<Label text="{i18n>LNAME_TH}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Left">
+												<Label text="{i18n>FNAME_EN}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Left">
+												<Label text="{i18n>MNAME_EN}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Left">
+												<Label text="{i18n>LNAME_EN}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Left">
+												<Label text="{i18n>DOB_HEADER}" design="Bold"/>
+											</Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Left" width="8%">
+												<Label text="{i18n>GENDER}" design="Bold"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<ObjectStatus text="{appModel>system}" state="None"/>
+													<ObjectStatus text="{appModel>id}" state="{appModel>idStatus}"/>
+													<ObjectStatus text="{appModel>fNameThai}" state="{appModel>fNameStatus}"/>
+													<ObjectStatus text="{appModel>mNameThai}" state="{appModel>mNameStatus}"/>
+													<ObjectStatus text="{appModel>lNameThai}" state="{appModel>lNameStatus}"/>
+													<ObjectStatus text="{appModel>fNameEn}" state="None"/>
+													<ObjectStatus text="{appModel>mNameEn}" state="None"/>
+													<ObjectStatus text="{appModel>lNameEn}" state="None"/>
+													<ObjectStatus text="{path:'appModel>dob', formatter: '.formatter.getDateFormat'}" state="{appModel>dobStatus}"/>
+													<ObjectStatus text="{appModel>gender}" state="{appModel>genderStatus}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+									<Toolbar class="sapUiMediumMarginTop" visible="{= ${appModel>accpanelVisible} === true ? true : false}">
+										<HBox width="100%">
+											<HBox width="20%" alignItems="Center">
+												<Title text="{i18n>ACC_DETAILS}" class="headerCss"></Title>
+											</HBox>
+											<HBox width="20%">
+												<DateTimePicker value="{appModel>accidentDateTime}" displayFormat="dd/MM/yyyy-HH:mm:ss" valueFormat="dd/MM/yyyy-HH:mm:ss"
+													change="handleChange" class="inputBorderBottomCss"/>
+												<!-- while binding use this format formatOptions: { style: 'medium', strictParsing: true}	-->
+											</HBox>
+										</HBox>
+									</Toolbar>
+									<Panel expandable="true" expanded="true" visible="{= ${appModel>accpanelVisible} === true ? true : false}">
+										<headerToolbar>
+											<Toolbar height="3rem">
+												<Label text="{i18n>ICD_CAUSE}" design="Bold"/>
+											</Toolbar>
+										</headerToolbar>
+										<content>
+											<Table items="{appModel>accCause}" alternateRowColors="true">
+												<columns>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_CODE}" design="Bold"/>
+													</Column>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_DESC_TH}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<Label text="{i18n>ICD_DESC_EN}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<core:Icon src="sap-icon://search" press="onSearchICD10" class="sapUiSmallMarginBeginBottom"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text="{appModel>causeCode}"/>
+															<Text text="{appModel>causeDescTh}"/>
+															<Text text="{appModel>causeDescEn}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+										</content>
+									</Panel>
+									<Panel expandable="true" expanded="true" visible="{= ${appModel>accpanelVisible} === true ? true : false}">
+										<headerToolbar>
+											<Toolbar height="3rem">
+												<Label text="{i18n>ICD_ORGAN}" design="Bold"/>
+												<ToolbarSpacer/>
+												<Button text="{i18n>ADD_BTN}" icon="sap-icon://add" type="Default" press="onAddIcd10Organ" iconFirst="true" tooltip="Add an item"
+													class="addButtonClass"></Button>
+												<Button text="{i18n>DEL_BTN}" icon="sap-icon://delete" type="Reject" press="onDeleteIcd10Organ" iconFirst="true" tooltip="Delete an Item"></Button>
+											</Toolbar>
+										</headerToolbar>
+										<content>
+											<Table mode="MultiSelect" items="{appModel>accOrgan}" alternateRowColors="true">
+												<columns>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_CODE}" design="Bold"/>
+													</Column>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_DESC_TH}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<Label text="{i18n>ICD_DESC_EN}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<Label text=""/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text="{appModel>organCode}"/>
+															<Text text="{appModel>organDescTh}"/>
+															<Text text="{appModel>organDescEn}"/>
+															<core:Icon src="sap-icon://search" press="onSearchOrganICD10" class="sapUiSmallMarginBeginBottom"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+										</content>
+									</Panel>
+								</VBox>
+								<!-- end of verify patient vbox -->
+								<!-- get policy vbox-->
+								<!-- DO NOT CHANGE THE CONTROL POSITION: If there is a change then kindly adjust the method fnFilterCoverage so as to access the table -->
+								<VBox visible="{= ${appModel>getPolicyFragment} === true ? true : false}">
+									<HBox width="100%">
+										<HBox width="70%">
+											<VBox class="sapUiSmallMarginBeginEnd" width="auto">
+												<Image src="{appModel>insLogo}" height="2rem"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="auto">
+												<Label text="{i18n>CLM_GRP}" design="Bold" wrapping="true" width="6rem"/>
+												<Text text="{appModel>clmGroup}"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="auto">
+												<Label text="{i18n>CLM_TYPE}" design="Bold" wrapping="true" width="6rem"/>
+												<Text text="{appModel>clmType}"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="auto">
+												<Label text="{i18n>BEN_REM_VAL}" design="Bold" wrapping="true"/>
+												<ObjectStatus class="sapUiSmallMarginBottom" text="{path:'appModel>benRemValue', formatter:'.formatter.getNumberFormat'}" state="Warning"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="auto">
+												<Label text="{i18n>RANK}" design="Bold" wrapping="true"/>
+												<Input value="{appModel>rank}" width="4rem" class="inputBorderBottomCss" change="fnInsRankChange"></Input>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="auto">
+												<Label text="{i18n>STATUS}" design="Bold"/>
+												<ComboBox class="comboBoxBorderBottomCss sapUiSizeCompact" items="{appModel>/policyStatus}" value="{appModel>headerStatus}"
+													selectedKey="{appModel>headerStatusCode}" width="5rem" change="fnFilterCoverage">
+													<core:Item text="{path:'appModel>POLICY_STATUS'}" key="{appModel>POLICY_STATUS_CODE}"/>
+												</ComboBox>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="auto">
+												<Button text="{i18n>FOLLOWUP_NOTES}" class="blueBcgClass sapUiSmallMarginEnd" press="onFollowUpPress"
+													visible="{= ${appModel>followUpVisibility} === true ? true : false}"/>
+											</VBox>
+										</HBox>
+										<HBox justifyContent="End" width="30%">
+											<!--<Button id="idReview" text="Review" class="blueBcgClass sapUiSmallMarginEnd" press="onReviewPress"-->
+											<!--	visible="{= ${appModel>/reviweButton} === true ? true : false}"/>-->
+											<Button id="idAddPolicy" icon="sap-icon://add" type="Default" iconFirst="true" text="{i18n>ADD_COVERAGE}" press="onAddPolicy"
+												class="addButtonClass" visible="{= ${appModel>addPolicyButton} === true ? true : false}"/>
+											<Button text="{i18n>COMPARE}" press="onCompare" class="blueBcgClass sapUiSmallMarginEnd"
+												visible="{= ${appModel>compareVisible} === true ? true : false}"/>
+											<Button id="idReqRes" text="{i18n>RESERVE_BTN}" press="onRequestReserve" class="customSaveCss"
+												visible="{= ${appModel>reqReservedButton} === true ? true : false}"/>
+											<Button text="{i18n>BACK}" press="toNavWithinFrag" class="blueBcgClass sapUiSmallMarginBegin"
+												visible="{= ${appModel>backFirstVisible} === true ? true : false}"/>
+										</HBox>
+									</HBox>
+									<Table class="policyTblCss getPolicyTableClass" id="idCoverageTable" items="{appModel>coverageTable}" mode="None" inset="true"
+										alternateRowColors="true">
+										<columns>
+											<Column hAlign="Center">
+												<Label text="{i18n>RANK}" design="Bold" class="textAlignCss"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>RESERVE_NUM}" design="Bold"/>
+											</Column>
+											<Column hAlign="Center">
+												<HBox>
+													<Label text="{i18n>INSURED_TYPE}" design="Bold" class="sapUiTinyMarginEnd"/>
+													<core:Icon src="sap-icon://sort" press="onSortTableItems"/>
+												</HBox>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>POL_NUM}" design="Bold"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>POL_STATUS}" design="Bold"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>BEN_VALUE}" design="Bold"/>
+											</Column>
+											<Column hAlign="Center" width="11rem">
+												<Label text="{i18n>BEN_REM_VAL}" design="Bold"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>REASON}" design="Bold"/>
+											</Column>
+											<Column hAlign="Center" width="8rem" visible="{= ${appModel>/confLinkVisible} === true ? true : false}">
+												<Label text="" design="Bold"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<!--  change="fnRankChange" -->
+													<Input value="{appModel>rank}" width="4rem" class="tableInputCss" change="fnPolicyRankChange"/>
+													<Text text="{appModel>reserveNumber}"/>
+													<Text text="{appModel>insuredType}"/>
+													<Text text="{appModel>policyNumber}"/>
+													<Text text="{path:'appModel>policyStatus', formatter: '.formatter.policyStatus'}"/>
+													<ObjectStatus text="{path:'appModel>benefitValue', formatter:'.formatter.getNumberFormat'}" state="Success"/>
+													<ObjectStatus text="{path:'appModel>benRemValue', formatter:'.formatter.getNumberFormat'}" state="Warning"/>
+													<core:Icon src="sap-icon://notification-2" press="onReasonPress" class="sapUiSmallMarginTop">
+														<core:layoutData>
+															<FlexItemData growFactor="1"/>
+														</core:layoutData>
+													</core:Icon>
+													<Link text="Confirmation Link" press="handleLinkPress"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</VBox>
+								<!-- end of get policy vbox -->
+								<!-- Local Insurance VBox -->
+								<VBox visible="{= ${appModel>localInsuranceFragment} === true ? true : false}">
+									<HBox width="100%">
+										<HBox width="55%" class="sapUiSmallMarginTop">
+											<!-- class="sapUiMediumMarginBeginEnd" -->
+											<VBox class="sapUiSmallMarginBeginEnd" width="14%">
+												<Image src="{appModel>insLogo}" height="2rem" class="sapUiSmallMarginBegin"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="14%">
+												<Label text="{i18n>CLM_GRP}" design="Bold" wrapping="true"/>
+												<Text text="{appModel>clmGroup}"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="20%">
+												<Label text="{i18n>CLM_TYPE}" design="Bold" wrapping="true"/>
+												<Text text="{appModel>clmType}"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBeginEnd" width="7%">
+												<Label text="{i18n>RANK}" design="Bold" wrapping="true"/>
+												<Input value="{appModel>rank}" width="4rem" class="inputBorderBottomCss" change="fnInsRankChange"></Input>
+											</VBox>
+										</HBox>
+										<HBox justifyContent="End" width="45%">
+											<VBox>
+												<VBox>
+													<HBox justifyContent="End">
+														<Button text="{i18n>ADD_COVERAGE}" icon="sap-icon://add" type="Default" iconFirst="true" press="onAddCoveraegClick" tooltip="Add an item"
+															class="addButtonClass sapUiSmallMarginEnd" visible="{= ${appModel>addBtn} === true ? true : false}"></Button>
+														<Button text="{i18n>DEL_BTN}" icon="sap-icon://delete" type="Reject" class="sapUiSmallMarginEnd" iconFirst="true" press="onDeleteLocalIns"
+															tooltip="Delete an Item" visible="{= ${appModel>deleteBtn} === true ? true : false}"></Button>
+														<Button text="{i18n>GET_RES_NUM}" type="Default" press="onReqReserveNumClk" tooltip="Get Reserve Number"
+															class="customSaveCss sapUiSmallMarginEnd" visible="{= ${appModel>reserveBtn} === true ? true : false}"></Button>
+														<Button text="{i18n>GUR_LETTER}" type="Default" press="onPressGuarLetter" tooltip="Add an item" class="blueBcgClass sapUiSmallMarginEnd"
+															visible="{= ${appModel>gauranteeBtn} === true ? true : false}"></Button>
+														<Button id="idReqDocBtn" text="{i18n>REQ_DOCS}" type="Default" press="onPressReqDoc" class="blueBcgClass sapUiSmallMarginEnd"
+															visible="{= ${appModel>requireBtn} === true ? true : false}"/>
+														<Button id="idFollowBtn" text="{i18n>FOLLOWUP_NOTES}" type="Default" class="blueBcgClass sapUiSmallMarginEnd" press="onFollowUpPress"
+															visible="{= ${appModel>followNoteBtn} === true ? true : false}"/>
+													</HBox>
+												</VBox>
+												<!--<VBox>-->
+												<!--	<HBox>-->
+												<!--	</HBox>-->
+												<!--</VBox>-->
+											</VBox>
+										</HBox>
+									</HBox>
+									<Table class="policyTblCss" id="idLocalInsTable" items="{appModel>localInsTable}" mode="MultiSelect" inset="true" alternateRowColors="true">
+										<columns>
+											<Column hAlign="Left">
+												<Label text="{i18n>RANK}" design="Bold"/>
+											</Column>
+											<Column hAlign="Left">
+												<HBox>
+													<Label text="{i18n>RESERVE_NUM}" design="Bold" class="sapUiSmallMarginEnd"/>
+													<!--<core:Icon src="sap-icon://sort"/>-->
+												</HBox>
+											</Column>
+											<Column hAlign="Left">
+												<Label text="{i18n>INSURED_TYPE}" design="Bold"/>
+											</Column>
+											<Column hAlign="Left">
+												<Label text="{i18n>POL_STATUS}" design="Bold"/>
+											</Column>
+											<Column hAlign="Left" visible="{= ${appModel>actionCol} === true ? true : false}">
+												<Label text="{i18n>ACTION}" design="Bold"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<!--  change="fnCheckRank"-->
+													<Input value="{appModel>rankLocal}" width="4rem" class="tableInputCss" change="fnCheckRank"/>
+													<Text text="{appModel>reserveNumberLocal}"/>
+													<VBox>
+														<ComboBox id="idInsuredType" value="{appModel>insuredTypeLocalVal}" class="tableComboBoxCss" items="{appModel>/insuredTypeLocalArray}"
+															change="onSelectInsuredType" selectedKey="{appModel>insuredTypeLocalKey}" width="7rem"
+															visible="{= ${appModel>insTypeComboBoxVisible} === true ? true : false}">
+															<items>
+																<core:Item text="{path:'appModel>TYPE_OF_INSURED'}" key="{appModel>TYPE_OF_INSURED_CODE}"/>
+															</items>
+														</ComboBox>
+														<Text text="{appModel>insuredTypeLocalVal}" visible="{= ${appModel>insTypeTextVisible} === true ? true : false}"/>
+													</VBox>
+													<VBox>
+														<Text text="" visible="{= ${appModel>policyTextVisible} === true ? true : false}"/>
+														<ComboBox class="tableComboBoxCss" items="{appModel>PolicyStatusLocalArray}" selectedKey="{appModel>policyStatusLocalKey}" width="7rem"
+															visible="{= ${appModel>policyComboBoxVisible} === true ? true : false}">
+															<items>
+																<core:Item text="{path:'appModel>POLICY_STATUS'}" key="{appModel>POLICY_STATUS_CODE}"/>
+															</items>
+														</ComboBox>
+													</VBox>
+													<Button id="idSendBtn" text="{i18n>WEBSITE_BTN}" visible="{= ${appModel>actionButtonVisible} === true ? true : false}" type="Default"
+														class="blueBcgClass sapUiSmallMarginEnd" press="onWebsiteLocalPress"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+									<Toolbar class="sapUiMediumMarginTop" visible="{= ${appModel>accpanelVisible} === true ? true : false}">
+										<HBox width="100%">
+											<HBox width="20%" alignItems="Center">
+												<Title text="{i18n>ACC_DETAILS}" class="headerCss"></Title>
+											</HBox>
+											<HBox width="20%">
+												<DateTimePicker value="{appModel>accidentDateTime}" displayFormat="dd/MM/yyyy-HH:mm:ss" valueFormat="dd/MM/yyyy-HH:mm:ss"
+													change="handleChange" class="inputBorderBottomCss"/>
+												<!-- while binding use this format formatOptions: { style: 'medium', strictParsing: true}	-->
+											</HBox>
+										</HBox>
+									</Toolbar>
+									<Panel expandable="true" expanded="true" visible="{= ${appModel>accpanelVisible} === true ? true : false}">
+										<headerToolbar>
+											<Toolbar height="3rem">
+												<Label text="{i18n>ICD_CAUSE}" design="Bold"/>
+											</Toolbar>
+										</headerToolbar>
+										<content>
+											<Table items="{appModel>accCause}" alternateRowColors="true">
+												<columns>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_CODE}" design="Bold"/>
+													</Column>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_DESC_TH}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<Label text="{i18n>ICD_DESC_EN}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<core:Icon src="sap-icon://search" press="onSearchICD10" class="sapUiSmallMarginBeginBottom"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text="{appModel>causeCode}"/>
+															<Text text="{appModel>causeDescTh}"/>
+															<Text text="{appModel>causeDescEn}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+										</content>
+									</Panel>
+									<Panel expandable="true" expanded="true" visible="{= ${appModel>accpanelVisible} === true ? true : false}">
+										<headerToolbar>
+											<Toolbar height="3rem">
+												<Label text="{i18n>ICD_ORGAN}" design="Bold"/>
+												<ToolbarSpacer/>
+												<Button text="{i18n>ADD_BTN}" icon="sap-icon://add" type="Default" press="onAddIcd10Organ" iconFirst="true" tooltip="Add an item"
+													class="addButtonClass"></Button>
+												<Button text="{i18n>DEL_BTN}" icon="sap-icon://delete" type="Reject" press="onDeleteLocalIcd10Organ" iconFirst="true"
+													tooltip="Delete an Item"></Button>
+											</Toolbar>
+										</headerToolbar>
+										<content>
+											<Table mode="MultiSelect" id="idLocalIcd10Organ" items="{appModel>accOrgan}" alternateRowColors="true">
+												<columns>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_CODE}" design="Bold"/>
+													</Column>
+													<Column hAlign="Center" width="8rem">
+														<Label text="{i18n>ICD_DESC_TH}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<Label text="{i18n>ICD_DESC_EN}" design="Bold"/>
+													</Column>
+													<Column width="8rem" hAlign="Center">
+														<Label text=""/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text="{appModel>organCode}"/>
+															<Text text="{appModel>organDescTh}"/>
+															<Text text="{appModel>organDescEn}"/>
+															<core:Icon src="sap-icon://search" press="onSearchOrganICD10" class="sapUiSmallMarginBeginBottom"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+										</content>
+									</Panel>
+								</VBox>
+								<!-- end of local insurance vbox -->
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<OverflowToolbar class="customFooterClass">
+				<ToolbarSpacer/>
+				<Button text="{i18n>REVIEW}" press="onReviewPress" class="blueBcgClass" visible="{= ${appModel>/reviewButton} === true ? true : false}"/>
+				<Button text="{i18n>HOME}" press="navBack" class="whiteBorderClass"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

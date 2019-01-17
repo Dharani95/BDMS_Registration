@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idAddIns" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="35rem" resizable="true">
+		<beginButton>
+			<Button text="{i18n>CANCEL}" class="customCancelCss" press="onCancelIns"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>DONE}" class="customSaveCss" press="confirmInsurance"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>SELECT_INS}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<HBox justifyContent="End">
+			<HBox>
+				<SearchField class="searchCustomClass" liveChange="onSearchDialogIns"/>
+			</HBox>
+		</HBox>
+		<content>
+			<Table id="idInsSelectTable" noDataText="No Data" mode="SingleSelectLeft" items="{path: 'appModel>/insurances'}"
+				class="boxClass commonTblClass" alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center" class="sapUiSmallMarginBeginEnd">
+						<Label text="{i18n>LOGO}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" class="sapUiSmallMarginBeginEnd">
+						<Label text="{i18n>INS_NAME_TH}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" class="sapUiSmallMarginBeginEnd">
+						<Label text="{i18n>INS_NAME_EN}" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Image src="{appModel>insuranceLogoUrl}" width="7rem" class="sapUiSmallMarginBegin" tooltip="Insurance logo"/>
+							<Text text="{appModel>insuranceNameTh}"/>
+							<Text text="{appModel>insuranceNameEn}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

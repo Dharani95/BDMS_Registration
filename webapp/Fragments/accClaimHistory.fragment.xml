@@ -1,0 +1,106 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="idAccClaim" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="50rem" resizable="true">
+		<beginButton>
+			<Button text="{i18n>SUBMIT}" class="customSaveCss" press="onSubmitHistory"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>CLOSE}" class="customCancelCss" press="onCloseAccClm"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>ACC_CLM_HIS}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<VBox class="accClmHistBoxShadow">
+				<HBox justifyContent="SpaceBetween">
+					<HBox class="accClmHisCss">
+						<HBox alignItems="Center">
+							<Label text="{i18n>FROM}" design="Bold"/>
+						</HBox>
+						<HBox>
+							<!--D : CHANGES MADE FOR DATEPICKER VALIDATION-->
+							<DatePicker id="DP2" displayFormat="dd/MM/yyyy" value="{appModel>/accClmFromDate}" valueFormat="dd/MM/yyyy"
+								valueState="{appModel>/accClmFromValState}" change="fnAccDateChange" class="inputBorderBottomCss"/>
+						</HBox>
+					</HBox>
+					<HBox class="accClmHisCss">
+						<HBox alignItems="Center">
+							<Label text="{i18n>TO}" design="Bold"/>
+						</HBox>
+						<HBox>
+							<DatePicker id="DP3" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{appModel>/accClmToDate}"
+								valueState="{appModel>/accClmToValState}" change="fnAccDateChange" class="inputBorderBottomCss"/>
+							<!--D : END OF CHANGES MADE FOR DATEPICKER VALIDATION-->
+						</HBox>
+					</HBox>
+					<HBox class="accClmHisCss">
+						<HBox alignItems="Center">
+							<Label text="{i18n>ICD_CODE_LABEL}" design="Bold"/>
+						</HBox>
+						<HBox>
+							<ComboBox class="comboBoxBorderBottomCss sapUiSizeCompact" width="7rem" valueState="{oCreateModel>/TicketReviewerValueState}"
+								change="onEmailChange">
+								<core:ListItem text="" key=""/>
+							</ComboBox>
+						</HBox>
+					</HBox>
+				</HBox>
+				<HBox justifyContent="End">
+					<!--D :FUNCTIONALITY FOR CLEAR HAS BEEN ADDED-->
+					<Button text="{i18n>CLEAR}" type="Reject" press="onClear" class="sapUiSmallMarginEnd"/>
+					<Button text="{i18n>SEARCH}" press="onSearchAccHistory" class="blueBcgClass"/>
+				</HBox>
+			</VBox>
+			<HBox justifyContent="Center">
+				<MessageStrip id="idMS" type="Error" showIcon="true" visible="false" showCloseButton="true" class="sapUiMediumMarginBottom"></MessageStrip>
+			</HBox>
+			<!--	D:	TABLE VISIBILITY HAS BEEN HANDLED BASED ON DATA-->
+			<Table id="idAccClmTable" noDataText="No Data" items="{appModel>/accHisClaimTable}" visible="{appModel>/accClmVis}" showNoData="true"
+				class="policyTblCss" mode="MultiSelect" selectionChange="onSelectAccItem" alternateRowColors="true">
+				<columns>
+					<Column hAlign="Center">
+						<Label text="{i18n>DT_OF_ACC}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>TIME_OF_ACC}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>ICD_CODE_CAUSE}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>ICDDESC_TH}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>ICDDESC_EN}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>ICD_CODE_ORG}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>ICDDESC_TH}" design="Bold"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="{i18n>ICDDESC_EN}" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{path: 'appModel>date', formatter: '.formatter.getDateFormat'}"/>
+							<Text text=""/>
+							<Text text="{appModel>code}"/>
+							<Text text="{appModel>desc}"/>
+							<Text text=""/>
+							<Text text="{appModel>orgnCode}"/>
+							<Text text="{appModel>orgnDesc}"/>
+							<Text text=""/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!-- items="{path: 'expenseModel>/accountTableData'}" -->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

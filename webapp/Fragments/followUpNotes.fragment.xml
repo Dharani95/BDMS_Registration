@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="idFollowUpDialog" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="50rem" contentHeight="12rem"
+		resizable="true">
+		<beginButton>
+			<Button text="{i18n>CLOSE}" class="customCancelCss" press="onCloseFollowUp"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>SAVE}" class="customSaveCss" press="onSaveFollowUp"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>FOLLOWUP_NOTES}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<HBox justifyContent="End">
+				<HBox>
+					<ComboBox items="{appModel>/umRole}" placeholder="Select Role" value="{appModel>/umRoleVal}" selectedKey="{appModel>/umRoleCode}"
+						selectionChange="onProductTypeSelect" class="comboBoxBorderBottomCss sapUiSizeCompact sapUiSmallMarginEnd" width="7rem">
+						<items>
+							<core:Item key="{appModel>ROLE_CODE}" text="{appModel>UM_ROLE_CODE}"/>
+						</items>
+					</ComboBox>
+				</HBox>
+				<HBox justifyContent="End">
+					<Button text="{i18n>ADD}" icon="sap-icon://add" type="Default" iconFirst="true" press="onAddFollowUpNotes" tooltip="Add an item"
+						class="addButtonClass sapUiSmallMarginEnd"></Button>
+				</HBox>
+			</HBox>
+			<Table id="idFollowTable" items="{appModel>/followUpTable}" noDataText="No Data" showNoData="true" class="policyTblCss"
+				selectionChange="onSelectAccItem" alternateRowColors="true">
+				<columns>
+					<Column hAlign="Left" width="3rem">
+						<Label text="{i18n>S_NO}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" width="12rem">
+						<Label text="{i18n>NOTE}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" width="8rem">
+						<Label text="{i18n>USER_NAME_FOLLOW_UP}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" width="8rem">
+						<Label text="{i18n>ROLE}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" width="10rem">
+						<Label text="{i18n>DATETIME}" design="Bold"/>
+					</Column>
+					<Column hAlign="Left" width="3rem">
+						<Label text=" " design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<VBox>
+								<Text text="{appModel>srNum}" width="3rem" visible="{= ${appModel>noteAvail} === 1 ? true : false}" class="sapUiSmallMarginEnd"></Text>
+								<Input value="{appModel>srNum}" width="3rem" class="tableInputCss sapUiSmallMarginEnd" visible="{= ${appModel>noteAvail} === 0 ? true : false}"></Input>
+							</VBox>
+							<VBox>
+								<Text text="{appModel>notes}" width="12rem" visible="{= ${appModel>noteAvail} === 1 ? true : false}" class="sapUiSmallMarginEnd"></Text>
+								<Input value="{appModel>notes}" width="12rem" class="tableInputCss sapUiSmallMarginEnd" visible="{= ${appModel>noteAvail} === 0 ? true : false}"></Input>
+							</VBox>
+							<VBox>
+								<Text text="{appModel>umNameOfUser}" width="8rem" visible="{= ${appModel>noteAvail} === 1 ? true : false}" class="sapUiSmallMarginEnd"></Text>
+								<!--<Input value="{appModel>docName}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onSearchDocList" width="6rem"-->
+								<!--	class="tableInputCss" visible="{= ${appModel>docAvail} === 0 ? true : false}"></Input>-->
+								<Text text="{appModel>umNameOfUser}" width="8rem" class="tableInputCss sapUiSmallMarginEnd" visible="{= ${appModel>noteAvail} === 0 ? true : false}"></Text>
+							</VBox>
+							<VBox>
+								<Text text="{appModel>umRoleCode}" width="8rem" visible="{= ${appModel>noteAvail} === 1 ? true : false}" class="sapUiSmallMarginEnd"></Text>
+								<Input value="{appModel>umRoleCode}" width="8rem" class="tableInputCss sapUiSmallMarginEnd" visible="{= ${appModel>noteAvail} === 0 ? true : false}"></Input>
+							</VBox>
+							<VBox>
+								<Text text="{appModel>dateTime}" width="10rem" visible="{= ${appModel>noteAvail} === 1 ? true : false}" class="sapUiSmallMarginEnd"></Text>
+								<!--<DatePicker value="{appModel>dateTime}" placeholder="Enter Date ..." change="handleChange" class="tableInputCss"-->
+								<!--	visible="{= ${appModel>noteAvail} === 0 ? true : false}"/>-->
+									<Text text="{appModel>dateTime}" width="10rem" visible="{= ${appModel>noteAvail} === 0 ? true : false}" class="sapUiSmallMarginBeginEnd"></Text>
+							</VBox>
+							<core:Icon src="sap-icon://delete" color="red" press="onDeleteNotes" visible="{= ${appModel>noteAvail} === 0 ? true : false}"></core:Icon>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

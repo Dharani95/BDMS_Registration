@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idAddPolicyDialog" showHeader="false" class="addInsDialogCss sapUiSizeCompact" contentWidth="35rem" resizable="true">
+		<buttons>
+			<Button text="{i18n>CANCEL}" class="customCancelCss" press="onCancelPolicy"/>
+			<Button text="{i18n>SUBMIT}" press="onSubmitPolicy" tooltip="Submit Review" class="customSaveCss"
+				visible="{= ${appModel>/submitVisible} === true ? true : false}"/>
+			<Button text="{i18n>GET_COVERAGE}" class="customSaveCss" press="onGetCoverage"
+				visible="{= ${appModel>/getCoverageVisible} === true ? true : false}"/>
+		</buttons>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>ADD_COVERAGE}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<HBox class="addPolicyPadding" width="100%">
+				<HBox width="20%" justifyContent="Center" class="sapUiSmallMarginEnd" alignItems="Center">
+					<Label text="Select" design="Bold"/>
+				</HBox>
+				<HBox width="30%" justifyContent="Center" class="sapUiSmallMarginEnd" alignItems="Center">
+					<ComboBox class="comboBoxBorderBottomCss sapUiSizeCompact" value="{appModel>/selectedTypeValue}" change="onSelectType">
+						<core:ListItem text="Policy Number" key="policyNum"/>
+						<core:ListItem text="Gen ID" key="genId"/>
+						<core:ListItem text="QR Code" key="qrCode"/>
+					</ComboBox>
+				</HBox>
+				<HBox width="30%" justifyContent="Center" class="sapUiSmallMarginEnd" alignItems="Center">
+					<Input value="{appModel>/selectPolicyNumber}"/>
+				</HBox>
+			</HBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

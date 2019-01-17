@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog id="idAddResNumDialog" showHeader="false" class="addInsDialogCss" contentWidth="35rem" resizable="true">
+		<beginButton>
+			<Button text="{i18n>CANCEL}" class="customCancelCss" press="onCancelResNum"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>GET_COVERAGE}" class="customSaveCss" press="onGetCoverage"/>
+		</endButton>
+		<customHeader>
+			<Toolbar class="toolbarCss">
+				<Label text="{i18n>ASSGN_RES_NUM}" class="sapUiSmallMarginBegin"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<HBox class="addPolicyPadding">
+				<HBox width="30%" justifyContent="Center" alignItems="Center">
+					<Label text="{i18n>RES_NUM_LABEL}" design="Bold"/>
+				</HBox>
+				<HBox>
+					<ComboBox class="comboBoxBorderBottomCss sapUiSizeCompact" selectedKey="res" width="7rem" change="onEmailChange">
+						<core:ListItem text="363738" key="res"/>
+					</ComboBox>
+				</HBox>
+			</HBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

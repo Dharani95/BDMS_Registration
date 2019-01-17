@@ -1,0 +1,108 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="in.BDMSInsurance.controller.SubmitReview"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title" floatingFooter="true" class="sapUiSizeCompact">
+		<!--D:SizeCompact has been added-->
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<HBox justifyContent="SpaceBetween">
+						<HBox>
+							<Image src="{appModel>/hospitalLogo}" height="2rem" class="sapUiSmallMarginBegin"/>
+							<Title text="{appModel>/hospitalName}" level="H3" class="sapUiSmallMarginBegin headerCss"/>
+						</HBox>
+						<Button icon="sap-icon://decline" press="onCloseButtonPress" class="closeAppButtonClass"></Button>
+					</HBox>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<content>
+			<Panel width="auto" expandable="true" expanded="true" class="sapUiResponsiveMargin bcgCss">
+				<headerToolbar>
+					<Toolbar height="3rem" class="customPanelToolbarCss">
+						<Title text="{i18n>IDENTIFICATION_TITLE}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<HBox width="100%">
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>TITLE_HEADER}" design="Bold"/>
+								<Text text="{appModel>/titleHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>FNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/firstNameHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>MNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/middleNameHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>LNAME_HEADER}" design="Bold"/>
+								<Text text="{appModel>/lastNameHeader}"/>
+							</VBox>
+						</VBox>
+						<VBox width="20%">
+							<VBox class="sapUiSmallMarginBottom">
+								<Label text="{i18n>HN_HEADER}" design="Bold"/>
+								<Text text="{appModel>/patientDetails/hospitalNumber}"/>
+							</VBox>
+						</VBox>
+					</HBox>
+				</content>
+			</Panel>
+			<!-- -->
+			<Panel id="id_panel" class="sapUiResponsiveMargin bcgCss" content="{appModel>/submitReview}" width="auto">
+				<headerToolbar>
+					<Toolbar height="3rem" class="customToolBarCss">
+						<Title text="{i18n>INS_DETAILS}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true" focusable="true">
+						<Table id="idProductsTable" items="{appModel>insTableArray}" inset="false" sticky="ColumnHeaders" class="submitRevStickClass"
+							alternateRowColors="true">
+							<columns>
+								<Column hAlign="Center">
+									<Label text="{i18n>INSURANCE}" design="Bold"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="{i18n>RESERVE_NUM}" design="Bold"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="{i18n>STATUS}" design="Bold"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="{i18n>MESSAGE}" design="Bold"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{appModel>insuranceNameEn}"/>
+										<Text text="{appModel>reserveNumber}"/>
+										<Text text="{appModel>reserveStatus}"/>
+										<ObjectStatus text="{appModel>message}" state="{appModel>stateValue}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<OverflowToolbar class="customFooterClass">
+				<ToolbarSpacer/>
+				<Button text="{i18n>SUBMIT_ALL}" class="customSaveCss" press="onSubmitAllPress"/>
+				<Button text="{i18n>BACK}" press="onBackPress" class="whiteBorderClass"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>
